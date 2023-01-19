@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Ubuntu", sans-serif;
+}
+
+html {
+  font-size: 100%;
+}
+
+@media only screen and (max-width: 1530px) {
+  html {
+    font-size: 90%;
+  }
+}
+
+@media only screen and (max-width: 1430px) {
+  html {
+    font-size: 87%;
+  }
+}
+
+@media only screen and (max-width: 1170px) {
+  html {
+    font-size: 80%;
+  }
+}
