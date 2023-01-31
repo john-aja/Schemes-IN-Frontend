@@ -1,30 +1,63 @@
 import { Component, OnInit } from '@angular/core';
-import { map, Observable } from 'rxjs';
-import { SchemesService } from '../db/schemes.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-scheme-category-page',
   templateUrl: './scheme-category-page.component.html',
   styleUrls: ['./scheme-category-page.component.scss'],
 })
 export class SchemeCategoryPageComponent implements OnInit {
-  constructor(private ss: SchemesService) {}
-  dataEducation!: Observable<any>;
-  ngOnInit(): void {
-    this.getData();
+  schemeCategories = [
+    {
+      no: 1,
+      category: 'Education',
+      imageUrl: '../../assets/education.svg',
+      hover: false,
+    },
+    {
+      no: 3,
+      category: 'Specially Abled Person',
+      imageUrl: '../../assets/differently_abled.svg',
+      hover: false,
+    },
+    {
+      no: 3,
+      category: "Women's",
+      imageUrl: '../../assets/women.svg',
+      hover: false,
+    },
+    {
+      no: 4,
+      category: 'SC/ST',
+      hover: false,
+    },
+    {
+      no: 5,
+      category: 'BC/OBC/MBC',
+      hover: false,
+    },
+  ];
+
+  constructor(private route: Router) {}
+
+  ngOnInit(): void {}
+
+  isActive(item: any) {
+    console.log(item);
+    if (this.schemeCategories.includes(item.category)) true;
   }
-  getData() {
-    this.dataEducation = this.ss.addSchemeToDb().pipe(
-      map((schemes: any) => {
-        const educationScheme = schemes.filter((scheme: any) => {
-          if (scheme.category === 'Education') {
-            console.log(scheme);
-            return scheme;
-          }
-        });
-        return educationScheme;
-      })
+
+  changeRoute(category: any) {
+    this.route.navigateByUrl(
+      'scheme-category/' +
+        category
+          .replace('/', '-')
+          .replace('/', '-')
+          .replace(' ', '-')
+          .replace(' ', '-')
+          .split(' ')
+          .join()
+          .toLowerCase()
     );
-    console.log(this.dataEducation);
-    return this.dataEducation.subscribe();
   }
 }

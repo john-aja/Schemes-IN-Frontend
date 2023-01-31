@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SchemesViewComponent } from './schemes-view/schemes-view.component';
 
 const routes: Routes = [
   {

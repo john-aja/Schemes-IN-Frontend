@@ -1,0 +1,35 @@
+<section class="bg-light min-h-screen">
+  <!-- Search Bar -->
+
+  <div class="px-40 mt-6 relative">
+    <input
+      type="text"
+      class="w-full p-3 bg-gray-300 bg-opacity-50 h-14 rounded-full focus:outline-none pl-16"
+      placeholder="Search scheme by scheme name or keyword..."
+    />
+    <img
+      src="../../assets/globalsearch.svg"
+      class="absolute top-1/2 -translate-y-1/2 pl-4 w-10"
+      alt=""
+    />
+  </div>
+
+  <!-- Back Nav -->
+
+  <div class="px-40 mt-12">
+    <div
+      routerLink="/scheme-category"
+      class="inline-flex gap-2 items-center px-4 py-2 bg-transparent rounded-full cursor-pointer transition-all border border-gray-500 hover:bg-gray-200"
+    >
+      <img src="../../../assets/arrow.svg" class="w-4 opacity-60" alt="" />
+      <p class="text-gray-700">Back to scheme category</p>
+    </div>
+  </div>
+
+  <!-- Schemes Title -->
+
+  <app-schemes-list-view
+    [category]="currentCategory"
+    [data]="dataEducation"
+  ></app-schemes-list-view>
+</section>

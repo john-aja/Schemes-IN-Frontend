@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SchemesMainPageComponent } from '../schemes-main-page/schemes-main-page.component';
+import { AddSchemeComponent } from '../add-scheme/add-scheme.component';
+import { SchemesViewComponent } from '../schemes-view/schemes-view.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
@@ -26,6 +27,14 @@ const routes: Routes = [
           import('../scheme-category-page/scheme-category-page.module').then(
             (m) => m.SchemeCategoryPageModule
           ),
+      },
+      {
+        path: ':schemeId/scheme',
+        component: SchemesViewComponent,
+      },
+      {
+        path: 'add-scheme',
+        component: AddSchemeComponent,
       },
     ],
   },

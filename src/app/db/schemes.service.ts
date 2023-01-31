@@ -20,4 +20,18 @@ export class SchemesService {
       })
     );
   }
+
+  getSchemeById(schemeId: any) {
+    console.log(schemeId);
+    return from(
+      liveQuery(async () => {
+        const schemes = await dexieDb.schemeData.toArray();
+        return schemes.filter((scheme) => {
+          if (scheme.schemeId === schemeId) {
+            return scheme;
+          } else return;
+        });
+      })
+    );
+  }
 }

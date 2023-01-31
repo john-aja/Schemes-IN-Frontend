@@ -4,3 +4,45 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.category-card {
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+  background: rgba(234, 234, 234, 0.58);
+  border: 1px solid white;
+  box-shadow: 5px 5px 21px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(6px);
+  max-height: fit-content;
+}
+
+.category-card.hover {
+  box-shadow: none;
+
+  max-height: fit-content;
+}
+
+.category_img {
+  transition: all 0.5s ease;
+}
+
+.category_img.img {
+  transform: scale(1.2);
+}
+
+.view_btn.showBtn {
+  transform: translateY(8px);
+  visibility: visible;
+  opacity: 1;
+}
+
+.category-card:active {
+  transform: scale(0.95) rotateZ(1.7deg);
+  transition-duration: 0.3s;
+}
+
+.view_btn {
+  transform: translateY(100px);
+  transition: all 0.5s ease;
+  visibility: hidden;
+  opacity: 0;
+}

@@ -1,0 +1,154 @@
+<section class="mt-10 flex justify-center min-h-screen">
+  <ng-container *ngIf="dataOb | async as data">
+    <ng-container *ngFor="let item of data">
+      <div class="w-10/12 flex flex-col gap-8 pb-8">
+        <!-- Scheme Name -->
+
+        <p class="text-2 text-center font-bold">{{ item.schemeName }}</p>
+
+        <!-- Scheme Description -->
+
+        <p class="mt-4 text-1.4 leading-10">{{ item.description }}</p>
+
+        <!-- Launched By -->
+
+        <p class="text-1.4" *ngIf="item?.launchedBy !== ''">
+          <span class="font-bold text-1.5">Launched by : </span
+          >{{ item.launchedBy }}
+        </p>
+
+        <!-- Launched On -->
+        <p class="text-1.4" *ngIf="item?.launchedOn !== ''">
+          <span class="font-bold text-1.5">Launched on : </span
+          >{{ item.launchedOn }}
+        </p>
+
+        <!-- Scheme Type -->
+
+        <p class="text-1.4" *ngIf="item?.schemeType !== ''">
+          <span class="font-bold text-1.5">Scheme Type : </span
+          >{{ item.schemeType }}
+        </p>
+
+        <!-- Scheme Feature -->
+
+        <div class="flex flex-col gap-4" *ngIf="item?.feature.length !== 0">
+          <p class="text-1.5 font-bold">Features</p>
+          <ul
+            *ngFor="let feat of item?.feature"
+            class="flex flex-col gap-2 text-1.4 leading-10 list-disc"
+          >
+            <li class="ml-10">{{ feat }}</li>
+          </ul>
+        </div>
+
+        <!-- Beneficiaries -->
+
+        <div
+          class="flex flex-col gap-4"
+          *ngIf="item.beneficiaries?.length !== 0"
+        >
+          <p class="text-1.5 font-bold">Beneficiaries</p>
+          <ul
+            *ngFor="let beneficiary of item?.beneficiaries"
+            class="flex flex-col gap-2 text-1.4 leading-10 list-disc"
+          >
+            <li class="ml-10">{{ beneficiary }}</li>
+          </ul>
+        </div>
+
+        <!-- Benefits -->
+
+        <div
+          class="flex flex-col gap-4"
+          *ngIf="
+            item.schemeBenefits?.benefits?.length !== 0 ||
+            item.schemeBenefits?.category?.length !== 0
+          "
+        >
+          <p class="text-1.5 font-bold">Benefits</p>
+          <ul
+            *ngFor="let benefit of item.schemeBenefits?.benefits"
+            class="flex flex-col gap-2 text-1.4 leading-10 list-disc"
+          >
+            <li class="ml-10">{{ benefit }}</li>
+          </ul>
+
+          <ul
+            *ngFor="let category of item.schemeBenefits?.category"
+            class="flex flex-col gap-2 text-1.4 leading-10 list-disc"
+          >
+            <li class="ml-10">{{ category }}</li>
+          </ul>
+        </div>
+
+        <!-- Application Procedure -->
+
+        <div
+          class="flex flex-col gap-4"
+          *ngIf="
+            item.applicationProcedure?.note?.length !== 0 ||
+            item.applicationProcedure?.procedure?.length !== 0
+          "
+        >
+          <p class="text-1.5 font-bold">Application Procedure</p>
+          <ul
+            *ngFor="let note of item.applicationProcedure?.note"
+            class="flex flex-col gap-2 text-1.4 leading-10"
+          >
+            <li class="ml-10 text-gray-600 italic">
+              {{ note }}
+            </li>
+          </ul>
+
+          <ul
+            *ngFor="let procedure of item.applicationProcedure?.procedure"
+            class="flex flex-col gap-2 text-1.4 leading-10 list-disc"
+          >
+            <li class="ml-10">{{ procedure }}</li>
+          </ul>
+        </div>
+
+        <!-- Documents Required -->
+
+        <div
+          class="flex flex-col gap-4"
+          *ngIf="
+            (item.documentsRequired?.documents?.length !== 0 ||
+              item.documentsRequired?.note?.length !== 0) &&
+            item.documentsRequired?.length !== 0
+          "
+        >
+          <p class="text-1.5 font-bold">Documents Required</p>
+          <ul
+            *ngFor="let note of item?.documentsRequired?.note"
+            class="flex flex-col gap-2 text-1.4 leading-10"
+          >
+            <li class="ml-10 text-gray-600 italic">
+              {{ note }}
+            </li>
+          </ul>
+
+          <ul
+            *ngFor="let procedure of item.documentsRequired?.documents"
+            class="flex flex-col gap-2 text-1.4 leading-10 list-disc"
+          >
+            <li class="ml-10">{{ procedure }}</li>
+          </ul>
+        </div>
+
+        <!-- Link -->
+
+        <div class="text-1.5">
+          <p class="font-bold pb-4">Link</p>
+          <a
+            [href]="item?.link"
+            target="_blank"
+            class="text-indigo-400 text-1.4 ml-10 transition-all hover:text-indigo-500"
+            >{{ item?.link }}</a
+          >
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+</section>

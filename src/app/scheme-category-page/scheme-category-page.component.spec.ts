@@ -8,9 +8,8 @@ describe('SchemeCategoryPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SchemeCategoryPageComponent ]
-    })
-    .compileComponents();
+      declarations: [SchemeCategoryPageComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SchemeCategoryPageComponent);
     component = fixture.componentInstance;
