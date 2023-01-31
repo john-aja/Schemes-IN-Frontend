@@ -1,6 +1,6 @@
 # InSchemes
 
-A collection of schemes where user can navigate and check details of various schemes implemented and sponsored by Tamilnady Government.
+A collection of schemes where user can navigate and check details of various schemes implemented and sponsored by Tamilnadu Government.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.3.
 
