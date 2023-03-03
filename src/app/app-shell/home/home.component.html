@@ -1,18 +1,116 @@
-<section class="bg-light">
-  <div class="flex gap-36 p-10">
-    <div>
-      <p class="font-black">SCHEMES-IN</p>
+<section class="bg-light w-screen overflow-hidden z-10 relative">
+  <div class="flex gap-20 p-10 items-center menu_container">
+    <div class="flex flex-col gap-3 justify-center items-center">
+      <img src="../../../assets/log.svg" class="w-12" alt="" />
+      <p
+        class="font-black whitespace-nowrap text-violet-600"
+        style="font-size: 10px"
+      >
+        SCHEMES-IN
+      </p>
     </div>
     <div class="navBar">
-      <ul class="flex gap-20 font-black">
-        <li routerLink="" class="cursor-pointer">Home</li>
-        <li routerLink="" class="cursor-pointer">About us</li>
-        <li routerLink="/schemes" class="cursor-pointer">Schemes</li>
-        <li routerLink="" class="cursor-pointer">Help</li>
-        <li routerLink="/add-scheme" class="cursor-pointer">Add Scheme</li>
+      <ul
+        routerLinkActive="active"
+        class="flex gap-20 font-black whitespace-nowrap text-gray-600"
+      >
+        <li
+          routerLink=""
+          class="cursor-pointer transition-all duration-500 hover:text-violet-500"
+        >
+          Home
+        </li>
+        <li
+          routerLink="/"
+          (click)="navigateToAboutSection()"
+          class="cursor-pointer transition-all duration-500 hover:text-violet-500"
+        >
+          About us
+        </li>
+        <li
+          routerLink="/schemes"
+          class="cursor-pointer transition-all duration-500 hover:text-violet-500"
+        >
+          Schemes
+        </li>
+        <li
+          routerLink="/"
+          (click)="navigateToHelpSection()"
+          class="cursor-pointer transition-all duration-500 hover:text-violet-500"
+        >
+          Help
+        </li>
+        <li
+          routerLink="/add-scheme"
+          class="cursor-pointer transition-all duration-500 hover:text-violet-500"
+        >
+          Add Scheme
+        </li>
       </ul>
     </div>
+    <div class="menuBtn">
+      <img
+        class="w-10"
+        src="../../../assets/menu.svg"
+        alt=""
+        (click)="openNav()"
+      />
+    </div>
   </div>
+  <div
+    *ngIf="menuBox"
+    (click)="closeNav()"
+    class="absolute top-0 left-0 h-screen w-screen bg-black bg-opacity-50 backdrop-blur-sm z-40"
+  ></div>
+  <!-- <ng-container *ngIf="menuBox"> -->
+  <div
+    class="h-screen w-4/6 absolute right-0 z-50 transition-all duration-500 overflow-hidden"
+    style="
+      background-image: linear-gradient(
+        to left bottom,
+        #7b5ee2,
+        #7052da,
+        #6546d3,
+        #5a3acb,
+        #4e2dc3
+      );
+    "
+    [ngClass]="menuBox ? 'top-0' : 'translateRight'"
+  >
+    <img
+      src="../../../assets/close.svg"
+      alt=""
+      (click)="closeNav()"
+      class="absolute top-10 right-10 w-12"
+    />
+    <ul
+      routerLinkActive="active"
+      class="flex flex-col h-full gap-20 font-black whitespace-nowrap items-center justify-center text-2 text-white"
+    >
+      <li routerLink="" (click)="closeNav()" class="cursor-pointer">Home</li>
+      <li
+        routerLink=""
+        (click)="closeNav(); navigateToAboutSection()"
+        class="cursor-pointer"
+      >
+        About us
+      </li>
+      <li routerLink="/schemes" (click)="closeNav()" class="cursor-pointer">
+        Schemes
+      </li>
+      <li
+        routerLink=""
+        (click)="closeNav(); navigateToHelpSection()"
+        class="cursor-pointer"
+      >
+        Help
+      </li>
+      <li routerLink="/add-scheme" (click)="closeNav()" class="cursor-pointer">
+        Add Scheme
+      </li>
+    </ul>
+  </div>
+  <!-- </ng-container> -->
   <div>
     <router-outlet></router-outlet>
   </div>

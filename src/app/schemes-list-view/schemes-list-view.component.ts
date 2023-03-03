@@ -20,6 +20,6 @@ export class SchemesListViewComponent implements OnInit {
 
   onSelect(scheme: any, index: any) {
     console.log(scheme, index);
-    this.route.navigateByUrl(scheme.schemeId + '/scheme');
+    this.route.navigateByUrl(`scheme-category/${scheme.schemeId}/scheme`);
   }
 }

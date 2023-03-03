@@ -8,6 +8,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { SchemesMainPageComponent } from './schemes-main-page/schemes-main-page.component';
 import { SchemeCategoryPageComponent } from './scheme-category-page/scheme-category-page.component';
 import { AddSchemeComponent } from './add-scheme/add-scheme.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -23,8 +24,12 @@ import { AddSchemeComponent } from './add-scheme/add-scheme.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule.forRoot([], {
+      scrollPositionRestoration: 'enabled',
+      anchorScrolling: 'enabled',
+      scrollOffset: [0, 64],
+    }),
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {

@@ -1,0 +1,35 @@
+.navBar {
+  animation: navAnim 3s forwards 0.3s;
+  opacity: 0;
+}
+
+.translateRight {
+  transform: translateY(-200%);
+}
+
+@keyframes navAnim {
+  from {
+    margin-top: -10rem;
+  }
+  to {
+    margin-top: 0;
+    opacity: 1;
+  }
+}
+
+.menuBtn {
+  display: none;
+}
+
+@media only screen and (max-width: 650px) {
+  .navBar {
+    display: none;
+  }
+  .menuBtn {
+    display: block;
+  }
+  .menu_container {
+    display: flex;
+    justify-content: space-between;
+  }
+}

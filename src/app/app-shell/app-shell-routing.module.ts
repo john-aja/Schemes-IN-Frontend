@@ -29,7 +29,7 @@ const routes: Routes = [
           ),
       },
       {
-        path: ':schemeId/scheme',
+        path: 'scheme-category/:schemeId/scheme',
         component: SchemesViewComponent,
       },
       {
