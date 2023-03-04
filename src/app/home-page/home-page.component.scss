@@ -343,6 +343,13 @@ textarea:focus {
   .schemes_section {
     padding-top: 5rem;
   }
+  .help_content {
+    width: 90%;
+  }
+  .help_inputs {
+    flex-wrap: wrap;
+    gap: 32px;
+  }
 }
 
 @media only screen and (max-width: 465px) {
