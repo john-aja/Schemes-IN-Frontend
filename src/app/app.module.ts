@@ -9,6 +9,11 @@ import { SchemesMainPageComponent } from './schemes-main-page/schemes-main-page.
 import { SchemeCategoryPageComponent } from './scheme-category-page/scheme-category-page.component';
 import { AddSchemeComponent } from './add-scheme/add-scheme.component';
 import { RouterModule } from '@angular/router';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
+import { AngularFireFunctionsModule } from '@angular/fire/compat/functions';
+
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 @NgModule({
   declarations: [
@@ -31,6 +36,7 @@ import { RouterModule } from '@angular/router';
     }),
   ],
   bootstrap: [AppComponent],
+  providers: [],
 })
 export class AppModule {
   constructor() {}

@@ -9,27 +9,25 @@ import { DbService } from './db.service';
 export class SchemesService {
   constructor(private dbs: DbService) {}
 
-  addSchemeToDb() {
+  async addSchemeToDb() {
     return from(
       liveQuery(async () => {
-        const schemes = await dexieDb.schemeData.toArray();
+        const schemes = await dexieDb.schemesData.toArray();
         if (schemes.length === 0) {
           return await this.dbs.getSchemesData();
         }
-        return dexieDb.schemeData.toArray();
+        return await dexieDb.schemesData.toArray();
       })
     );
   }
 
   getSchemeById(schemeId: any) {
-    console.log(schemeId);
     return from(
       liveQuery(async () => {
-        const schemes = await dexieDb.schemeData.toArray();
+        const schemes = await dexieDb.schemesData.toArray();
         return schemes.filter((scheme) => {
-          if (scheme.schemeId === schemeId) {
-            return scheme;
-          } else return;
+          if (scheme.schemeId === schemeId) return scheme;
+          else return;
         });
       })
     );

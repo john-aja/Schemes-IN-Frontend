@@ -14,25 +14,31 @@ export class EducationSchemeComponent implements OnInit {
   selectedScheme: any;
   selectedSchemeNo: any;
   schemeView: boolean = false;
+  availableSchemes: any[] = [];
+  loading: boolean = false;
 
   constructor(private ss: SchemesService, private route: Router) {}
 
-  ngOnInit(): void {
-    const id = this.route.url.split('/').pop();
+  async ngOnInit() {
+    this.currentCategory = this.route.url.split('/').pop();
 
-    this.currentCategory = id;
-    console.log(this.currentCategory);
     this.getData();
   }
 
-  getData() {
-    this.dataEducation = this.ss.addSchemeToDb().pipe(
+  async getData() {
+    this.loading = true;
+    this.dataEducation = (await this.ss.addSchemeToDb()).pipe(
       map((schemes: any) => {
-        return schemes.filter((scheme: any) => {
-          if (scheme.category.toLowerCase() === this.currentCategory) {
-            console.log(scheme);
+        return schemes?.filter((scheme: any) => {
+          if (
+            scheme?.category?.toLowerCase() ===
+            this.currentCategory.toLowerCase()
+          ) {
+            this.loading = false;
+            this.availableSchemes.push(scheme);
             return scheme;
           }
+          this.loading = false;
         });
       })
     );

@@ -9,24 +9,22 @@ import { SchemesService } from '../db/schemes.service';
   styleUrls: ['./schemes-view.component.scss'],
 })
 export class SchemesViewComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private ss: SchemesService) {}
-  schemeId: any;
+  category!: string;
+  schemeId!: string;
   dataOb!: Observable<any>;
+
+  constructor(private route: ActivatedRoute, private ss: SchemesService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(async (param) => {
       this.schemeId = param['schemeId'];
-      console.log(this.schemeId);
+      this.category = param['schemeCategory'];
     });
+
     this.dataOb = this.ss.getSchemeById(this.schemeId).pipe(
       map((v: any) => {
-        console.log(v);
         return v;
       })
     );
-
-    // console.log(this.dataOb.subscribe());
   }
-
-  getSchemeData() {}
 }

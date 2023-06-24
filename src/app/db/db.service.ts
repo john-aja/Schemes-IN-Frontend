@@ -1,28 +1,50 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { dexieDb } from './db';
 import { IScheme } from './interface';
+
 @Injectable({
   providedIn: 'root',
 })
 export class DbService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   async getSchemesData() {
-    const save = await axios.post('http://localhost:4000/getAllScheme');
-
-    const allScheme = save.data;
-
-    allScheme.map(async (scheme: IScheme) => {
-      await dexieDb.schemeData
-        .put(scheme)
-        .then(() => console.log('Data added to db'))
-        .catch((err) => console.log(err));
-    });
+    const save: any = axios
+      .post(
+        'https://us-central1-schemes-india.cloudfunctions.net/api/getAllScheme'
+      )
+      .then(async (response) => {
+        // Handle the response data
+        await response?.data.map(async (v: any) => {
+          if (v) await dexieDb.schemesData.put(v);
+        });
+        return response.data;
+      })
+      .catch((error) => {
+        console.error(error);
+        return error;
+      });
+    return save;
   }
 
   async addScheme(data: any) {
-    const res = await axios.post('http://localhost:4000/createScheme', data);
-    console.log(res.data);
+    const updatedData = await axios.post(
+      'https://us-central1-schemes-india.cloudfunctions.net/api/createScheme',
+      data
+    );
+    if (updatedData.data.status === 'SUCCESS') {
+      await dexieDb.schemesData.put(data);
+      return {
+        status: 'SUCCESS',
+        message: 'The scheme was successfully updated to the database.',
+      };
+    } else {
+      return {
+        status: 'ERROR',
+        message: 'Error updating scheme to the database',
+      };
+    }
   }
 }

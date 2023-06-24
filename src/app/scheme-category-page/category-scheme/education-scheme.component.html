@@ -1,4 +1,4 @@
-<section class="bg-light min-h-screen">
+<section class="bg-light min-h-[95vh]">
   <!-- Search Bar -->
 
   <div class="px-28 mt-6 relative">
@@ -28,8 +28,23 @@
 
   <!-- Schemes Title -->
 
-  <app-schemes-list-view
-    [category]="currentCategory"
-    [data]="dataEducation"
-  ></app-schemes-list-view>
+  <app-schemes-list-view [category]="currentCategory" [data]="dataEducation">
+    <ng-container *ngIf="availableSchemes.length === 0 && !loading">
+      <div class="flex flex-col pt-16 justify-center items-center">
+        <img class="w-1/4" src="../../../assets/no_data.png" alt="" />
+        <p class="font-bold text-violet-500">Oops! Data not available!!</p>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="loading">
+      <div class="h-full flex justify-center items-center">
+        <div class="spinner">
+          <div class="rect1"></div>
+          <div class="rect2"></div>
+          <div class="rect3"></div>
+          <div class="rect4"></div>
+          <div class="rect5"></div>
+        </div>
+      </div>
+    </ng-container>
+  </app-schemes-list-view>
 </section>

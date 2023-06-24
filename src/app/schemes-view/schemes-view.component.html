@@ -1,3 +1,15 @@
+<!-- Back Nav -->
+
+<div class="px-28 mt-12">
+  <div
+    routerLink="/scheme-category/{{ category }}"
+    class="inline-flex gap-2 items-center px-4 py-2 bg-transparent rounded-full cursor-pointer transition-all border border-gray-500 hover:bg-gray-200"
+  >
+    <img src="../../../assets/arrow.svg" class="w-4 opacity-60" alt="" />
+    <p class="text-gray-700">Back to {{ category }} scheme list</p>
+  </div>
+</div>
+
 <section class="mt-10 flex justify-center min-h-screen">
   <ng-container *ngIf="dataOb | async as data">
     <ng-container *ngFor="let item of data">

@@ -18,11 +18,11 @@ export interface IScheme {
 }
 
 export class AppDB extends Dexie {
-  schemeData!: Table<IScheme, number>;
+  schemesData!: Table<IScheme, number>;
   constructor() {
     super('DexieDBScheme');
-    this.version(1).stores({
-      schemeData: 'schemeNo',
+    this.version(3).stores({
+      schemesData: 'schemeId',
     });
     this.open()
       .then((data) => console.log(data, 'DB Opened'))

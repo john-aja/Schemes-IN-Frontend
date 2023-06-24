@@ -42,22 +42,10 @@ export class SchemeCategoryPageComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  isActive(item: any) {
-    console.log(item);
-    if (this.schemeCategories.includes(item.category)) true;
-  }
-
-  changeRoute(category: any) {
+  changeRoute(category: string) {
     this.route.navigateByUrl(
       'scheme-category/' +
-        category
-          .replace('/', '-')
-          .replace('/', '-')
-          .replace(' ', '-')
-          .replace(' ', '-')
-          .split(' ')
-          .join()
-          .toLowerCase()
+        category.split('/').join('-').split(' ').join('-').toLowerCase()
     );
   }
 }

@@ -17,6 +17,9 @@ import { DbService } from '../db/db.service';
   styleUrls: ['./add-scheme.component.scss'],
 })
 export class AddSchemeComponent implements OnInit {
+  successState: boolean = false;
+  loading: boolean = false;
+  successMessage!: string;
   @ViewChild('multipleField') multipleField: any;
 
   schemeFeature = new FormArray([new FormControl('', Validators.required)]);
@@ -107,12 +110,6 @@ export class AddSchemeComponent implements OnInit {
     this.schemeDocuments.push(new FormControl('', Validators.required));
   }
 
-  submit() {
-    const data = this.submitForm.value;
-    console.log(data);
-    this.ds.addScheme(data);
-  }
-
   removeFieldFeature(i: any) {
     this.schemeFeature.removeAt(i);
   }
@@ -141,5 +138,23 @@ export class AddSchemeComponent implements OnInit {
   }
   removeFieldDocuments(i: any) {
     this.schemeDocuments.removeAt(i);
+  }
+
+  async submit() {
+    const data = this.submitForm.value;
+    this.submitForm.reset();
+    this.loading = true;
+    const newData = await this.ds.addScheme(data).then((v) => {
+      if (v.status === 'SUCCESS') {
+        this.loading = false;
+        this.successState = true;
+        this.successMessage = v.message;
+        setInterval(() => {
+          this.successState = false;
+        }, 3000);
+      }
+    });
+    console.log(newData);
+    return newData;
   }
 }

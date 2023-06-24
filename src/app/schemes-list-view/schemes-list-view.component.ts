@@ -8,18 +8,43 @@ import { Observable } from 'rxjs';
   styleUrls: ['./schemes-list-view.component.scss'],
 })
 export class SchemesListViewComponent implements OnInit {
-  @Input() category: any;
-  @Input() data: any;
-  dataEducation!: Observable<any>;
-  datOb!: Observable<any>;
+  @Input() category!: string;
+  @Input() data!: Observable<any>;
+  imgArr: any[] = [
+    {
+      type: 'education',
+      url: '../../assets/education.svg',
+    },
+    {
+      type: 'specially-abled-person',
+      url: '../../assets/differently_abled.svg',
+    },
+    {
+      type: "women's",
+      url: '../../assets/women.svg',
+    },
+    {
+      type: 'sc-st',
+      url: '',
+    },
+    {
+      type: 'bc-obc-mbc',
+      url: '',
+    },
+  ];
   constructor(private route: Router) {}
 
   ngOnInit(): void {
-    console.log(this.category, 'viewCategory');
+    this.imgArr = this.imgArr.filter((v) => {
+      if (v.type === this.category) {
+        return v;
+      }
+    });
   }
 
-  onSelect(scheme: any, index: any) {
-    console.log(scheme, index);
-    this.route.navigateByUrl(`scheme-category/${scheme.schemeId}/scheme`);
+  onSelect(scheme: any) {
+    this.route.navigateByUrl(
+      `scheme-category/${this.category}/${scheme.schemeId}/scheme`
+    );
   }
 }
