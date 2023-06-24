@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { SchemeCategoryPageRoutingModule } from './scheme-category-page-routing.module';
 import { EducationSchemeComponent } from './category-scheme/education-scheme.component';
 import { SchemesViewComponent } from '../schemes-view/schemes-view.component';
