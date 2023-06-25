@@ -47,4 +47,21 @@ export class DbService {
       };
     }
   }
+
+  async sendEmailToAdmin(data: any) {
+    const sendEmail = await axios.post(
+      'https://us-central1-schemes-india.cloudfunctions.net/api/sendEmail'
+    );
+    if (sendEmail.data.status === 'SUCCESS') {
+      return {
+        status: 'SUCCESS',
+        message: 'Email sent successfully to Admin',
+      };
+    } else {
+      return {
+        status: 'Error',
+        message: 'Errored while sending email',
+      };
+    }
+  }
 }

@@ -4,3 +4,9 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+@media only screen and (max-width: 600px) {
+  .scheme_list {
+    padding: 1rem 3rem;
+  }
+}

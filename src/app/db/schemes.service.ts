@@ -32,4 +32,8 @@ export class SchemesService {
       })
     );
   }
+
+  sendEmailToAdmin(body: any) {
+    return this.dbs.sendEmailToAdmin(body);
+  }
 }
