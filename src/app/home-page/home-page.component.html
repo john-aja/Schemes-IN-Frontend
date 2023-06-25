@@ -258,8 +258,12 @@
 </section>
 
 <footer
-  class="bg-light flex justify-between px-20 items-center pt-32 pb-4 text-sm text-gray-700"
+  class="bg-light flex justify-between px-20 items-center pt-32 pb-4 text-sm text-gray-700 relative"
 >
+  <div
+    *ngIf="loading"
+    class="absolute bottom-0 left-0 h-full w-full bg-black bg-opacity-50 flex items-center justify-center z-20"
+  ></div>
   <div class="flex flex-col gap-2">
     <p class="text-gray-500">Say Hello!</p>
     <p>admin@schemes-in.com</p>
