@@ -50,7 +50,8 @@ export class DbService {
 
   async sendEmailToAdmin(data: any) {
     const sendEmail = await axios.post(
-      'https://us-central1-schemes-india.cloudfunctions.net/api/sendEmail'
+      'https://us-central1-schemes-india.cloudfunctions.net/api/sendEmail',
+      data
     );
     if (sendEmail.data.status === 'SUCCESS') {
       return {
