@@ -384,6 +384,12 @@ textarea:focus {
   footer > div {
     flex: 50%;
   }
+  .error_text {
+    bottom: -2.8rem;
+  }
+  .error_text::before {
+    display: none;
+  }
 
   footer div:last-child {
     margin-top: 4rem;

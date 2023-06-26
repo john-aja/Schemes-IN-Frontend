@@ -5,6 +5,7 @@ import {
   Validators,
   FormArray,
   FormControl,
+  FormGroup,
 } from '@angular/forms';
 import { DbService } from '../db/db.service';
 
@@ -14,9 +15,14 @@ import { DbService } from '../db/db.service';
   styleUrls: ['./add-scheme.component.scss'],
 })
 export class AddSchemeComponent implements OnInit {
+  isLoggedIn = false;
   successState: boolean = false;
   loading: boolean = false;
   successMessage!: string;
+  loginEmail: string = 'johnaj@*******.com';
+  loginPassword: string = '*******';
+  loginForm!: FormGroup;
+
   @ViewChild('multipleField') multipleField: any;
 
   schemeFeature = new FormArray([new FormControl('', Validators.required)]);
@@ -67,6 +73,24 @@ export class AddSchemeComponent implements OnInit {
       }),
       link: ['', Validators.required],
     });
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+      ]),
+      password: new FormControl('', Validators.required),
+    });
+  }
+
+  login(data: any) {
+    if (
+      data.email === this.loginEmail &&
+      data.password === this.loginPassword
+    ) {
+      this.isLoggedIn = true;
+    } else {
+      this.isLoggedIn = false;
+    }
   }
 
   createField() {
@@ -151,7 +175,6 @@ export class AddSchemeComponent implements OnInit {
         }, 3000);
       }
     });
-    console.log(newData);
     return newData;
   }
 }

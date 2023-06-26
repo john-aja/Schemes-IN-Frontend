@@ -53,6 +53,7 @@ export class DbService {
       'https://us-central1-schemes-india.cloudfunctions.net/api/sendEmail',
       data
     );
+    console.log(data);
     if (sendEmail.data.status === 'SUCCESS') {
       return {
         status: 'SUCCESS',

@@ -1,643 +1,727 @@
-<section class="">
-  <div class="w-full flex flex-col justify-center items-center">
-    <p class="text-center text-2 font-black mt-6 w-3/4">
-      Fill out the form below to add a scheme to the database
-    </p>
-    <p class="mt-2 text-sm text-center w-3/4">
-      Make sure you enter the correct details through your research
-    </p>
-  </div>
-  <div style="padding: 0 10% 5% 10%" class="grid grid-cols-1 self-center mt-10">
-    <div>
-      <form [formGroup]="submitForm" class="relative z-10">
-        <!-- Scheme Name -->
+<ng-container *ngIf="isLoggedIn">
+  <section class="">
+    <div class="w-full flex flex-col justify-center items-center">
+      <p class="text-center text-2 font-black mt-6 w-3/4">
+        Fill out the form below to add a scheme to the database
+      </p>
+      <p class="mt-2 text-sm text-center w-3/4">
+        Make sure you enter the correct details through your research
+      </p>
+    </div>
+    <div
+      style="padding: 0 10% 5% 10%"
+      class="grid grid-cols-1 self-center mt-10"
+    >
+      <div>
+        <form [formGroup]="submitForm" class="relative z-10">
+          <!-- Scheme Name -->
 
-        <div class="relative">
-          <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">
-            Scheme Name
-          </p>
-          <input
-            type="text"
-            required=""
-            formControlName="schemeName"
-            autocomplete="off"
-            class="w-full"
-            maxlength="150"
-          />
-          <label for="name">Scheme Name</label>
-        </div>
-        <p
-          *ngIf="
-            submitForm.controls['schemeName'].invalid &&
-            submitForm.controls['schemeName'].touched
-          "
-          class="ml-4 mt-2 text-red-400 text-0.8"
-        >
-          *Scheme name is required
-        </p>
-
-        <!-- Scheme Description -->
-
-        <div class="relative mt-6">
-          <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">
-            Scheme Description
-          </p>
-          <textarea
-            #description
-            required=""
-            formControlName="description"
-            class="w-full h-32 min-h-full max-h-36"
-            maxlength="1000"
-          ></textarea>
-          <label for="name">Scheme Description</label>
-          <p class="absolute bottom-4 right-6 text-gray-400">
-            {{ description.value.length }}/1000
-          </p>
-        </div>
-        <p
-          *ngIf="
-            submitForm.controls['description'].invalid &&
-            submitForm.controls['description'].touched
-          "
-          class="ml-4 mt-2 text-red-400 text-0.8"
-        >
-          *Description is required
-        </p>
-
-        <div class="relative mt-6">
-          <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">Scheme Id</p>
-          <input
-            type="text"
-            required=""
-            formControlName="schemeId"
-            autocomplete="off"
-            class="w-full"
-          />
-          <label for="name">Scheme Id</label>
-        </div>
-        <p
-          *ngIf="
-            submitForm.controls['schemeId'].invalid &&
-            submitForm.controls['schemeId'].touched
-          "
-          class="ml-4 mt-2 text-red-400 text-0.8"
-        >
-          *Scheme Id is required
-        </p>
-
-        <!-- Scheme LaunchedBy -->
-
-        <div class="relative mt-6">
-          <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">
-            Scheme Launched by
-          </p>
-          <input
-            type="text"
-            required=""
-            formControlName="launchedBy"
-            class="w-full"
-          />
-          <label for="name">Scheme Launched by</label>
-        </div>
-
-        <!-- Scheme LaunchedOn -->
-
-        <div class="relative mt-6">
-          <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">
-            Scheme Launched on
-          </p>
-          <input
-            type="text"
-            required=""
-            formControlName="launchedOn"
-            class="w-full"
-          />
-          <label for="name">Scheme Launched on</label>
-        </div>
-
-        <!-- Scheme Category -->
-
-        <div class="relative mt-6">
-          <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">
-            Scheme Category
-          </p>
-          <select class="w-full" formControlName="category">
-            <option value="" selected class="text-gray-300">Select one</option>
-            <option value="education">Education</option>
-            <option value="women's">Women's</option>
-            <option value="sc-st">SC/ST</option>
-            <option value="bc-obc-mbc">BC/OBC/MBC</option>
-            <option value="agriculture">Agriculture</option>
-            <option value="specially-abled-person">
-              Specially Abled Person
-            </option>
-          </select>
-        </div>
-        <p
-          *ngIf="
-            submitForm.controls['category'].invalid &&
-            submitForm.controls['category'].touched &&
-            submitForm.controls['category'].value === ''
-          "
-          class="ml-4 mt-2 text-red-400 text-0.8"
-        >
-          *Category is required
-        </p>
-
-        <!-- Scheme LaunchedOn -->
-
-        <div class="relative mt-6">
-          <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">
-            Scheme Type
-          </p>
-          <input
-            type="text"
-            required=""
-            formControlName="schemeType"
-            class="w-full"
-            placeholder="Ex: Tamilnadu State Government Scheme"
-          />
-          <label for="name">Scheme Type</label>
-        </div>
-
-        <p
-          *ngIf="
-            submitForm.controls['schemeType'].invalid &&
-            submitForm.controls['schemeType'].touched
-          "
-          class="ml-4 mt-2 text-red-400 text-0.8"
-        >
-          *Scheme type is required
-        </p>
-        <!-- Scheme Feature -->
-
-        <div class="relative mt-6">
-          <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">
-            Scheme Feature:
-          </p>
-          <div
-            *ngFor="let item of schemeFeature.controls; index as i"
-            class="flex"
-          >
+          <div class="relative">
+            <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">
+              Scheme Name
+            </p>
             <input
               type="text"
               required=""
+              formControlName="schemeName"
               autocomplete="off"
-              [formControl]="item"
-              class="w-full mb-6"
+              class="w-full"
+              maxlength="150"
             />
-            <label for="name">Scheme Feature ({{ i + 1 }})</label>
-            <div
-              (click)="removeFieldFeature(i)"
-              class="bg-light border h-12 w-12 ml-8 rounded-full relative mb-6 cursor-pointer"
-              style="box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff"
-            >
-              <div
-                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 bg-red-400"
-                style="height: 3px"
-              ></div>
-            </div>
+            <label for="name">Scheme Name</label>
           </div>
-
-          <p class="text-xs mt-2 text-gray-400 pl-4">
-            *Create new input if you are about to add multiple features
+          <p
+            *ngIf="
+              submitForm.controls['schemeName'].invalid &&
+              submitForm.controls['schemeName'].touched
+            "
+            class="ml-4 mt-2 text-red-400 text-0.8"
+          >
+            *Scheme name is required
           </p>
 
-          <div class="mt-3 flex justify-center items-center gap-4">
-            <p
-              class="add-field cursor-pointer px-10 py-2 text-center bg-gray-300 bg-opacity-50 text-gray-500 rounded-full inline-block w-fit"
-              (click)="createField()"
-            >
-              + Add Feature
+          <!-- Scheme Description -->
+
+          <div class="relative mt-6">
+            <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">
+              Scheme Description
+            </p>
+            <textarea
+              #description
+              required=""
+              formControlName="description"
+              class="w-full h-32 min-h-full max-h-36"
+              maxlength="1000"
+            ></textarea>
+            <label for="name">Scheme Description</label>
+            <p class="absolute bottom-4 right-6 text-gray-400">
+              {{ description.value.length }}/1000
             </p>
           </div>
-        </div>
-
-        <!-- Scheme Beneficiaries -->
-
-        <div class="relative mt-6">
-          <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">
-            Beneficiaries
-          </p>
-          <div
-            *ngFor="let item of schemeBeneficiaries.controls; index as i"
-            class="flex"
+          <p
+            *ngIf="
+              submitForm.controls['description'].invalid &&
+              submitForm.controls['description'].touched
+            "
+            class="ml-4 mt-2 text-red-400 text-0.8"
           >
+            *Description is required
+          </p>
+
+          <div class="relative mt-6">
+            <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">
+              Scheme Id
+            </p>
             <input
               type="text"
               required=""
-              [formControl]="item"
-              class="w-full mb-6"
+              formControlName="schemeId"
+              autocomplete="off"
+              class="w-full"
             />
-            <label for="name">Beneficiaries ({{ i + 1 }})</label>
-            <div
-              (click)="removeFieldBeneficiary(i)"
-              class="bg-light border h-12 w-12 ml-8 rounded-full relative mb-6 cursor-pointer"
-              style="box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff"
-            >
-              <div
-                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 bg-red-400"
-                style="height: 3px"
-              ></div>
-            </div>
+            <label for="name">Scheme Id</label>
           </div>
-          <p class="text-xs mt-2 text-gray-400 pl-4">
-            *Create new input if you are about to add multiple beneficiaries
-          </p>
-
-          <div class="mt-3 flex justify-center items-center gap-4">
-            <p
-              class="add-field cursor-pointer px-10 py-2 text-center bg-gray-300 bg-opacity-50 text-gray-500 rounded-full inline-block w-fit"
-              (click)="createFieldBeneficiary()"
-            >
-              + Add Beneficiaries
-            </p>
-          </div>
-        </div>
-
-        <!-- Scheme Eligibility -->
-
-        <div class="relative mt-6">
-          <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">
-            Eligibility
-          </p>
-          <div
-            *ngFor="let item of schemeEligibility.controls; index as i"
-            class="flex"
+          <p
+            *ngIf="
+              submitForm.controls['schemeId'].invalid &&
+              submitForm.controls['schemeId'].touched
+            "
+            class="ml-4 mt-2 text-red-400 text-0.8"
           >
+            *Scheme Id is required
+          </p>
+
+          <!-- Scheme LaunchedBy -->
+
+          <div class="relative mt-6">
+            <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">
+              Scheme Launched by
+            </p>
             <input
               type="text"
               required=""
-              [formControl]="item"
-              class="w-full mb-6"
+              formControlName="launchedBy"
+              class="w-full"
             />
-            <label for="name">Eligibility ({{ i + 1 }})</label>
-            <div
-              (click)="removeFieldEligibility(i)"
-              class="bg-light border h-12 w-12 ml-8 rounded-full relative mb-6 cursor-pointer"
-              style="box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff"
-            >
-              <div
-                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 bg-red-400"
-                style="height: 3px"
-              ></div>
-            </div>
+            <label for="name">Scheme Launched by</label>
           </div>
-          <p class="text-xs mt-2 text-gray-400 pl-4">
-            *Create new input if you are about to add multiple eligibility
-            details
-          </p>
 
-          <div class="mt-3 flex justify-center items-center gap-4">
-            <p
-              class="add-field cursor-pointer px-10 py-2 text-center bg-gray-300 bg-opacity-50 text-gray-500 rounded-full inline-block w-fit"
-              (click)="createFieldEligibility()"
-            >
-              + Add Eligibility
+          <!-- Scheme LaunchedOn -->
+
+          <div class="relative mt-6">
+            <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">
+              Scheme Launched on
             </p>
-          </div>
-        </div>
-
-        <!-- Scheme Benefits -->
-
-        <div class="relative mt-6">
-          <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">
-            Scheme Benefits :
-          </p>
-
-          <!-- Scheme Benefits Info -->
-
-          <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">Benefits</p>
-          <div
-            *ngFor="let item of schemeBenefits.controls; index as i"
-            class="flex"
-          >
             <input
               type="text"
               required=""
-              [formControl]="item"
-              class="w-full mb-6"
+              formControlName="launchedOn"
+              class="w-full"
             />
-            <label for="name">Benefits ({{ i + 1 }})</label>
-            <div
-              (click)="removeFieldBenefits(i)"
-              class="bg-light border h-12 w-12 ml-8 rounded-full relative mb-6 cursor-pointer"
-              style="box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff"
-            >
-              <div
-                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 bg-red-400"
-                style="height: 3px"
-              ></div>
-            </div>
+            <label for="name">Scheme Launched on</label>
           </div>
-          <p class="text-xs mt-2 text-gray-400 pl-4">
-            *Create new input if you are about to add multiple benefits details
-          </p>
 
-          <div class="mt-3 flex justify-center items-center gap-4">
-            <p
-              class="add-field cursor-pointer px-10 py-2 text-center bg-gray-300 bg-opacity-50 text-gray-500 rounded-full inline-block w-fit"
-              (click)="createFieldBenefits()"
-            >
-              + Add Benefits
+          <!-- Scheme Category -->
+
+          <div class="relative mt-6">
+            <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">
+              Scheme Category
             </p>
+            <select class="w-full" formControlName="category">
+              <option value="" selected class="text-gray-300">
+                Select one
+              </option>
+              <option value="education">Education</option>
+              <option value="women's">Women's</option>
+              <option value="sc-st">SC/ST</option>
+              <option value="bc-obc-mbc">BC/OBC/MBC</option>
+              <option value="agriculture">Agriculture</option>
+              <option value="specially-abled-person">
+                Specially Abled Person
+              </option>
+            </select>
           </div>
-
-          <!-- Scheme Benefits Additional Info -->
-
-          <p class="pb-3 pl-4 mt-4 text-1.4 font-medium text-gray-600">
-            Additional Benefits Info
-          </p>
-          <div
-            *ngFor="let item of schemeAdditionalBenefits.controls; index as i"
-            class="flex"
+          <p
+            *ngIf="
+              submitForm.controls['category'].invalid &&
+              submitForm.controls['category'].touched &&
+              submitForm.controls['category'].value === ''
+            "
+            class="ml-4 mt-2 text-red-400 text-0.8"
           >
+            *Category is required
+          </p>
+
+          <!-- Scheme LaunchedOn -->
+
+          <div class="relative mt-6">
+            <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">
+              Scheme Type
+            </p>
             <input
               type="text"
               required=""
-              [formControl]="item"
-              class="w-full mb-6"
+              formControlName="schemeType"
+              class="w-full"
+              placeholder="Ex: Tamilnadu State Government Scheme"
             />
-            <label for="name">Additional Benefits ({{ i + 1 }})</label>
-            <div
-              (click)="removeFieldAdditionalBenefits(i)"
-              class="bg-light border h-12 w-12 ml-8 rounded-full relative mb-6 cursor-pointer"
-              style="box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff"
-            >
-              <div
-                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 bg-red-400"
-                style="height: 3px"
-              ></div>
-            </div>
+            <label for="name">Scheme Type</label>
           </div>
-          <p class="text-xs mt-2 text-gray-400 pl-4">
-            *Create new input if you are about to add multiple addional benefits
-            details
-          </p>
 
-          <div class="mt-3 flex justify-center items-center gap-4">
-            <p
-              class="add-field cursor-pointer px-10 py-2 text-center bg-gray-300 bg-opacity-50 text-gray-500 rounded-full inline-block w-fit"
-              (click)="createFieldBenefitsAdditional()"
-            >
-              + Add Additional Benefits
+          <p
+            *ngIf="
+              submitForm.controls['schemeType'].invalid &&
+              submitForm.controls['schemeType'].touched
+            "
+            class="ml-4 mt-2 text-red-400 text-0.8"
+          >
+            *Scheme type is required
+          </p>
+          <!-- Scheme Feature -->
+
+          <div class="relative mt-6">
+            <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">
+              Scheme Feature:
             </p>
-          </div>
-        </div>
-
-        <!-- Application Procedure -->
-
-        <div class="relative mt-6">
-          <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">
-            Scheme Applicaton Procedure :
-          </p>
-
-          <!-- Scheme Procedure Note -->
-
-          <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">Note</p>
-          <div
-            *ngFor="let item of schemeProcedureNote.controls; index as i"
-            class="flex"
-          >
-            <input
-              type="text"
-              required=""
-              [formControl]="item"
-              class="w-full mb-6"
-            />
-            <label for="name">Procedure Note ({{ i + 1 }})</label>
             <div
-              (click)="removeFieldProcedureNote(i)"
-              class="bg-light border h-12 w-12 ml-8 rounded-full relative mb-6 cursor-pointer"
-              style="box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff"
+              *ngFor="let item of schemeFeature.controls; index as i"
+              class="flex"
             >
+              <input
+                type="text"
+                required=""
+                autocomplete="off"
+                [formControl]="item"
+                class="w-full mb-6"
+              />
+              <label for="name">Scheme Feature ({{ i + 1 }})</label>
               <div
-                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 bg-red-400"
-                style="height: 3px"
-              ></div>
+                (click)="removeFieldFeature(i)"
+                class="bg-light border h-12 w-12 ml-8 rounded-full relative mb-6 cursor-pointer"
+                style="box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff"
+              >
+                <div
+                  class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 bg-red-400"
+                  style="height: 3px"
+                ></div>
+              </div>
             </div>
-          </div>
-          <p class="text-xs mt-2 text-gray-400 pl-4">
-            *Create new input if you are about to add multiple procedure notes
-          </p>
 
-          <div class="mt-3 flex justify-center items-center gap-4">
-            <p
-              class="add-field cursor-pointer px-10 py-2 text-center bg-gray-300 bg-opacity-50 text-gray-500 rounded-full inline-block w-fit"
-              (click)="createFieldProcedureNote()"
-            >
-              + Add Note
+            <p class="text-xs mt-2 text-gray-400 pl-4">
+              *Create new input if you are about to add multiple features
             </p>
-          </div>
 
-          <!-- Scheme Procedure -->
-
-          <p class="pb-3 pl-4 mt-4 text-1.4 font-medium text-gray-600">
-            Procedure
-          </p>
-          <div
-            *ngFor="let item of schemeProcedure.controls; index as i"
-            class="flex"
-          >
-            <input
-              type="text"
-              required=""
-              [formControl]="item"
-              class="w-full mb-6"
-            />
-            <label for="name">Procedure ({{ i + 1 }})</label>
-            <div
-              (click)="removeFieldProcedure(i)"
-              class="bg-light border h-12 w-12 ml-8 rounded-full relative mb-6 cursor-pointer"
-              style="box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff"
-            >
-              <div
-                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 bg-red-400"
-                style="height: 3px"
-              ></div>
-            </div>
-          </div>
-          <p class="text-xs mt-2 text-gray-400 pl-4">
-            *Create new input if you are about to add multiple procedure details
-          </p>
-
-          <div class="mt-3 flex justify-center items-center gap-4">
-            <p
-              class="add-field cursor-pointer px-10 py-2 text-center bg-gray-300 bg-opacity-50 text-gray-500 rounded-full inline-block w-fit"
-              (click)="createFieldProcedure()"
-            >
-              + Add Additional Benefits
-            </p>
-          </div>
-        </div>
-
-        <!-- Documents Required -->
-
-        <div class="relative mt-6">
-          <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">
-            Documents Required :
-          </p>
-
-          <!-- Scheme Procedure Note -->
-
-          <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">Note</p>
-          <div
-            *ngFor="let item of schemeDocumentsNote.controls; index as i"
-            class="flex"
-          >
-            <input
-              type="text"
-              required=""
-              [formControl]="item"
-              class="w-full mb-6"
-            />
-            <label for="name">Documents Note ({{ i + 1 }})</label>
-            <div
-              (click)="removeFieldDocumentsNote(i)"
-              class="bg-light border h-12 w-12 ml-8 rounded-full relative mb-6 cursor-pointer"
-              style="box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff"
-            >
-              <div
-                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 bg-red-400"
-                style="height: 3px"
-              ></div>
-            </div>
-          </div>
-          <p class="text-xs mt-2 text-gray-400 pl-4">
-            *Create new input if you are about to add multiple notes
-          </p>
-
-          <div class="mt-3 flex justify-center items-center gap-4">
-            <p
-              class="add-field cursor-pointer px-10 py-2 text-center bg-gray-300 bg-opacity-50 text-gray-500 rounded-full inline-block w-fit"
-              (click)="createFieldDocumentNote()"
-            >
-              + Add Note
-            </p>
-          </div>
-
-          <!-- Documents -->
-
-          <p class="pb-3 pl-4 mt-4 text-1.4 font-medium text-gray-600">
-            Documents
-          </p>
-          <div
-            *ngFor="let item of schemeDocuments.controls; index as i"
-            class="flex"
-          >
-            <input
-              type="text"
-              required=""
-              [formControl]="item"
-              class="w-full mb-6"
-            />
-            <label for="name">Documents ({{ i + 1 }})</label>
-            <div
-              (click)="removeFieldDocuments(i)"
-              class="bg-light border h-12 w-12 ml-8 rounded-full relative mb-6 cursor-pointer"
-              style="box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff"
-            >
-              <div
-                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 bg-red-400"
-                style="height: 3px"
-              ></div>
-            </div>
-          </div>
-          <p class="text-xs mt-2 text-gray-400 pl-4">
-            *Create new input if you are about to add multiple documents
-          </p>
-
-          <div class="mt-3 flex justify-center items-center gap-4">
-            <p
-              class="add-field cursor-pointer px-10 py-2 text-center bg-gray-300 bg-opacity-50 text-gray-500 rounded-full inline-block w-fit"
-              (click)="createFieldDocuments()"
-            >
-              + Add Document
-            </p>
-          </div>
-        </div>
-
-        <!-- Link -->
-
-        <div class="relative mt-6">
-          <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">Link</p>
-          <input
-            type="text"
-            required=""
-            formControlName="link"
-            autocomplete="off"
-            class="w-full"
-          />
-          <label>Detailed Page Link</label>
-        </div>
-
-        <p
-          *ngIf="
-            submitForm.controls['link'].invalid &&
-            submitForm.controls['link'].touched
-          "
-          class="ml-4 mt-2 text-red-400 text-0.8"
-        >
-          *Link is required
-        </p>
-        <div class="flex justify-center mt-16">
-          <button
-            [ngClass]="submitForm.invalid ? 'cursor-not-allowed' : ''"
-            (click)="submit()"
-            class="flex justify-center items-center px-4 py-2 w-40 rounded-full text-white transition-all hover:w-48 bg-indigo-400 hover:bg-indigo-500"
-          >
-            <span class="span-mother absolute flex overflow-hidden">
-              <span>S</span>
-              <span>u</span>
-              <span>b</span>
-              <span>m</span>
-              <span>i</span>
-              <span>t</span>
-            </span>
-            <span class="span-mother2 flex overflow-hidden">
-              <span>S</span>
-              <span>u</span>
-              <span>b</span>
-              <span>m</span>
-              <span>i</span>
-              <span>t</span>
-            </span>
-          </button>
-        </div>
-      </form>
-
-      <ng-container *ngIf="successState || loading">
-        <div
-          class="absolute bottom-0 left-0 h-[200rem] w-full bg-black bg-opacity-50 flex items-center justify-center z-20"
-        ></div>
-        <ng-container *ngIf="loading">
-          <div
-            class="w-full absolute left-0 bottom-96 z-30 flex justify-center"
-          >
-            <div class="spinner">
-              <div class="rect1"></div>
-              <div class="rect2"></div>
-              <div class="rect3"></div>
-              <div class="rect4"></div>
-              <div class="rect5"></div>
-            </div>
-          </div>
-        </ng-container>
-        <ng-container *ngIf="successState">
-          <div
-            class="w-full absolute left-0 bottom-96 z-30 flex justify-center"
-          >
-            <div
-              class="w-1/2 flex flex-col justify-center items-center gap-6 bg-white border-1 border-gray-400 py-10 px-4 rounded-xl"
-            >
-              <img src="../../assets/success.svg" alt="" />
-              <p class="" style="font-size: 18px">
-                {{ successMessage }}
+            <div class="mt-3 flex justify-center items-center gap-4">
+              <p
+                class="add-field cursor-pointer px-10 py-2 text-center bg-gray-300 bg-opacity-50 text-gray-500 rounded-full inline-block w-fit"
+                (click)="createField()"
+              >
+                + Add Feature
               </p>
             </div>
           </div>
+
+          <!-- Scheme Beneficiaries -->
+
+          <div class="relative mt-6">
+            <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">
+              Beneficiaries
+            </p>
+            <div
+              *ngFor="let item of schemeBeneficiaries.controls; index as i"
+              class="flex"
+            >
+              <input
+                type="text"
+                required=""
+                [formControl]="item"
+                class="w-full mb-6"
+              />
+              <label for="name">Beneficiaries ({{ i + 1 }})</label>
+              <div
+                (click)="removeFieldBeneficiary(i)"
+                class="bg-light border h-12 w-12 ml-8 rounded-full relative mb-6 cursor-pointer"
+                style="box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff"
+              >
+                <div
+                  class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 bg-red-400"
+                  style="height: 3px"
+                ></div>
+              </div>
+            </div>
+            <p class="text-xs mt-2 text-gray-400 pl-4">
+              *Create new input if you are about to add multiple beneficiaries
+            </p>
+
+            <div class="mt-3 flex justify-center items-center gap-4">
+              <p
+                class="add-field cursor-pointer px-10 py-2 text-center bg-gray-300 bg-opacity-50 text-gray-500 rounded-full inline-block w-fit"
+                (click)="createFieldBeneficiary()"
+              >
+                + Add Beneficiaries
+              </p>
+            </div>
+          </div>
+
+          <!-- Scheme Eligibility -->
+
+          <div class="relative mt-6">
+            <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">
+              Eligibility
+            </p>
+            <div
+              *ngFor="let item of schemeEligibility.controls; index as i"
+              class="flex"
+            >
+              <input
+                type="text"
+                required=""
+                [formControl]="item"
+                class="w-full mb-6"
+              />
+              <label for="name">Eligibility ({{ i + 1 }})</label>
+              <div
+                (click)="removeFieldEligibility(i)"
+                class="bg-light border h-12 w-12 ml-8 rounded-full relative mb-6 cursor-pointer"
+                style="box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff"
+              >
+                <div
+                  class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 bg-red-400"
+                  style="height: 3px"
+                ></div>
+              </div>
+            </div>
+            <p class="text-xs mt-2 text-gray-400 pl-4">
+              *Create new input if you are about to add multiple eligibility
+              details
+            </p>
+
+            <div class="mt-3 flex justify-center items-center gap-4">
+              <p
+                class="add-field cursor-pointer px-10 py-2 text-center bg-gray-300 bg-opacity-50 text-gray-500 rounded-full inline-block w-fit"
+                (click)="createFieldEligibility()"
+              >
+                + Add Eligibility
+              </p>
+            </div>
+          </div>
+
+          <!-- Scheme Benefits -->
+
+          <div class="relative mt-6">
+            <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">
+              Scheme Benefits :
+            </p>
+
+            <!-- Scheme Benefits Info -->
+
+            <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">Benefits</p>
+            <div
+              *ngFor="let item of schemeBenefits.controls; index as i"
+              class="flex"
+            >
+              <input
+                type="text"
+                required=""
+                [formControl]="item"
+                class="w-full mb-6"
+              />
+              <label for="name">Benefits ({{ i + 1 }})</label>
+              <div
+                (click)="removeFieldBenefits(i)"
+                class="bg-light border h-12 w-12 ml-8 rounded-full relative mb-6 cursor-pointer"
+                style="box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff"
+              >
+                <div
+                  class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 bg-red-400"
+                  style="height: 3px"
+                ></div>
+              </div>
+            </div>
+            <p class="text-xs mt-2 text-gray-400 pl-4">
+              *Create new input if you are about to add multiple benefits
+              details
+            </p>
+
+            <div class="mt-3 flex justify-center items-center gap-4">
+              <p
+                class="add-field cursor-pointer px-10 py-2 text-center bg-gray-300 bg-opacity-50 text-gray-500 rounded-full inline-block w-fit"
+                (click)="createFieldBenefits()"
+              >
+                + Add Benefits
+              </p>
+            </div>
+
+            <!-- Scheme Benefits Additional Info -->
+
+            <p class="pb-3 pl-4 mt-4 text-1.4 font-medium text-gray-600">
+              Additional Benefits Info
+            </p>
+            <div
+              *ngFor="let item of schemeAdditionalBenefits.controls; index as i"
+              class="flex"
+            >
+              <input
+                type="text"
+                required=""
+                [formControl]="item"
+                class="w-full mb-6"
+              />
+              <label for="name">Additional Benefits ({{ i + 1 }})</label>
+              <div
+                (click)="removeFieldAdditionalBenefits(i)"
+                class="bg-light border h-12 w-12 ml-8 rounded-full relative mb-6 cursor-pointer"
+                style="box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff"
+              >
+                <div
+                  class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 bg-red-400"
+                  style="height: 3px"
+                ></div>
+              </div>
+            </div>
+            <p class="text-xs mt-2 text-gray-400 pl-4">
+              *Create new input if you are about to add multiple addional
+              benefits details
+            </p>
+
+            <div class="mt-3 flex justify-center items-center gap-4">
+              <p
+                class="add-field cursor-pointer px-10 py-2 text-center bg-gray-300 bg-opacity-50 text-gray-500 rounded-full inline-block w-fit"
+                (click)="createFieldBenefitsAdditional()"
+              >
+                + Add Additional Benefits
+              </p>
+            </div>
+          </div>
+
+          <!-- Application Procedure -->
+
+          <div class="relative mt-6">
+            <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">
+              Scheme Applicaton Procedure :
+            </p>
+
+            <!-- Scheme Procedure Note -->
+
+            <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">Note</p>
+            <div
+              *ngFor="let item of schemeProcedureNote.controls; index as i"
+              class="flex"
+            >
+              <input
+                type="text"
+                required=""
+                [formControl]="item"
+                class="w-full mb-6"
+              />
+              <label for="name">Procedure Note ({{ i + 1 }})</label>
+              <div
+                (click)="removeFieldProcedureNote(i)"
+                class="bg-light border h-12 w-12 ml-8 rounded-full relative mb-6 cursor-pointer"
+                style="box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff"
+              >
+                <div
+                  class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 bg-red-400"
+                  style="height: 3px"
+                ></div>
+              </div>
+            </div>
+            <p class="text-xs mt-2 text-gray-400 pl-4">
+              *Create new input if you are about to add multiple procedure notes
+            </p>
+
+            <div class="mt-3 flex justify-center items-center gap-4">
+              <p
+                class="add-field cursor-pointer px-10 py-2 text-center bg-gray-300 bg-opacity-50 text-gray-500 rounded-full inline-block w-fit"
+                (click)="createFieldProcedureNote()"
+              >
+                + Add Note
+              </p>
+            </div>
+
+            <!-- Scheme Procedure -->
+
+            <p class="pb-3 pl-4 mt-4 text-1.4 font-medium text-gray-600">
+              Procedure
+            </p>
+            <div
+              *ngFor="let item of schemeProcedure.controls; index as i"
+              class="flex"
+            >
+              <input
+                type="text"
+                required=""
+                [formControl]="item"
+                class="w-full mb-6"
+              />
+              <label for="name">Procedure ({{ i + 1 }})</label>
+              <div
+                (click)="removeFieldProcedure(i)"
+                class="bg-light border h-12 w-12 ml-8 rounded-full relative mb-6 cursor-pointer"
+                style="box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff"
+              >
+                <div
+                  class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 bg-red-400"
+                  style="height: 3px"
+                ></div>
+              </div>
+            </div>
+            <p class="text-xs mt-2 text-gray-400 pl-4">
+              *Create new input if you are about to add multiple procedure
+              details
+            </p>
+
+            <div class="mt-3 flex justify-center items-center gap-4">
+              <p
+                class="add-field cursor-pointer px-10 py-2 text-center bg-gray-300 bg-opacity-50 text-gray-500 rounded-full inline-block w-fit"
+                (click)="createFieldProcedure()"
+              >
+                + Add Additional Benefits
+              </p>
+            </div>
+          </div>
+
+          <!-- Documents Required -->
+
+          <div class="relative mt-6">
+            <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">
+              Documents Required :
+            </p>
+
+            <!-- Scheme Procedure Note -->
+
+            <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">Note</p>
+            <div
+              *ngFor="let item of schemeDocumentsNote.controls; index as i"
+              class="flex"
+            >
+              <input
+                type="text"
+                required=""
+                [formControl]="item"
+                class="w-full mb-6"
+              />
+              <label for="name">Documents Note ({{ i + 1 }})</label>
+              <div
+                (click)="removeFieldDocumentsNote(i)"
+                class="bg-light border h-12 w-12 ml-8 rounded-full relative mb-6 cursor-pointer"
+                style="box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff"
+              >
+                <div
+                  class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 bg-red-400"
+                  style="height: 3px"
+                ></div>
+              </div>
+            </div>
+            <p class="text-xs mt-2 text-gray-400 pl-4">
+              *Create new input if you are about to add multiple notes
+            </p>
+
+            <div class="mt-3 flex justify-center items-center gap-4">
+              <p
+                class="add-field cursor-pointer px-10 py-2 text-center bg-gray-300 bg-opacity-50 text-gray-500 rounded-full inline-block w-fit"
+                (click)="createFieldDocumentNote()"
+              >
+                + Add Note
+              </p>
+            </div>
+
+            <!-- Documents -->
+
+            <p class="pb-3 pl-4 mt-4 text-1.4 font-medium text-gray-600">
+              Documents
+            </p>
+            <div
+              *ngFor="let item of schemeDocuments.controls; index as i"
+              class="flex"
+            >
+              <input
+                type="text"
+                required=""
+                [formControl]="item"
+                class="w-full mb-6"
+              />
+              <label for="name">Documents ({{ i + 1 }})</label>
+              <div
+                (click)="removeFieldDocuments(i)"
+                class="bg-light border h-12 w-12 ml-8 rounded-full relative mb-6 cursor-pointer"
+                style="box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff"
+              >
+                <div
+                  class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 bg-red-400"
+                  style="height: 3px"
+                ></div>
+              </div>
+            </div>
+            <p class="text-xs mt-2 text-gray-400 pl-4">
+              *Create new input if you are about to add multiple documents
+            </p>
+
+            <div class="mt-3 flex justify-center items-center gap-4">
+              <p
+                class="add-field cursor-pointer px-10 py-2 text-center bg-gray-300 bg-opacity-50 text-gray-500 rounded-full inline-block w-fit"
+                (click)="createFieldDocuments()"
+              >
+                + Add Document
+              </p>
+            </div>
+          </div>
+
+          <!-- Link -->
+
+          <div class="relative mt-6">
+            <p class="pb-3 pl-4 text-1.4 font-medium text-gray-600">Link</p>
+            <input
+              type="text"
+              required=""
+              formControlName="link"
+              autocomplete="off"
+              class="w-full"
+            />
+            <label>Detailed Page Link</label>
+          </div>
+
+          <p
+            *ngIf="
+              submitForm.controls['link'].invalid &&
+              submitForm.controls['link'].touched
+            "
+            class="ml-4 mt-2 text-red-400 text-0.8"
+          >
+            *Link is required
+          </p>
+          <div class="flex justify-center mt-16">
+            <button
+              [ngClass]="submitForm.invalid ? 'cursor-not-allowed' : ''"
+              (click)="submit()"
+              class="flex justify-center items-center px-4 py-2 w-40 rounded-full text-white transition-all hover:w-48 bg-indigo-400 hover:bg-indigo-500"
+            >
+              <span class="span-mother absolute flex overflow-hidden">
+                <span>S</span>
+                <span>u</span>
+                <span>b</span>
+                <span>m</span>
+                <span>i</span>
+                <span>t</span>
+              </span>
+              <span class="span-mother2 flex overflow-hidden">
+                <span>S</span>
+                <span>u</span>
+                <span>b</span>
+                <span>m</span>
+                <span>i</span>
+                <span>t</span>
+              </span>
+            </button>
+          </div>
+        </form>
+
+        <ng-container *ngIf="successState || loading">
+          <div
+            class="absolute bottom-0 left-0 h-[200rem] w-full bg-black bg-opacity-50 flex items-center justify-center z-20"
+          ></div>
+          <ng-container *ngIf="loading">
+            <div
+              class="w-full absolute left-0 bottom-96 z-30 flex justify-center"
+            >
+              <div class="spinner">
+                <div class="rect1"></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="successState">
+            <div
+              class="w-full absolute left-0 bottom-96 z-30 flex justify-center"
+            >
+              <div
+                class="w-1/2 flex flex-col justify-center items-center gap-6 bg-white border-1 border-gray-400 py-10 px-4 rounded-xl"
+              >
+                <img src="../../assets/success.svg" alt="" />
+                <p class="" style="font-size: 18px">
+                  {{ successMessage }}
+                </p>
+              </div>
+            </div>
+          </ng-container>
         </ng-container>
-      </ng-container>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</ng-container>
+
+<ng-container *ngIf="!isLoggedIn">
+  <section class="h-[90vh] login_section">
+    <div class="h-full relative flex justify-center items-center">
+      <form
+        [formGroup]="loginForm"
+        action=""
+        class="px-14 py-10 bg-gray-200 rounded-lg w-3/4 flex flex-col gap-12"
+      >
+        <img
+          class="w-40 ml-[50%] -translate-x-1/2 mb-4"
+          src="../../assets/admin_login.svg"
+          alt=""
+        />
+        <div class="flex flex-col gap-6 relative">
+          <p>Email</p>
+          <input
+            type="text"
+            class="w-full text-left"
+            placeholder="Enter your email address"
+            formControlName="email"
+          />
+          <p
+            *ngIf="
+              loginForm.controls['email'].invalid &&
+              loginForm.controls['email'].touched
+            "
+            class="error_text absolute -bottom-10 left-2 px-4 py-2 rounded-sm bg-red-200 text-red-800"
+            style="font-size: 8px"
+          >
+            Please enter a valid to proceed
+          </p>
+        </div>
+        <div class="flex flex-col gap-6 relative">
+          <p>Password</p>
+          <input
+            placeholder="Enter your password"
+            class="w-full text-start"
+            type="password"
+            formControlName="password"
+          />
+          <p
+            *ngIf="
+              loginForm.controls['password'].invalid &&
+              loginForm.controls['password'].touched
+            "
+            class="error_text absolute -bottom-10 left-2 px-4 py-2 rounded-sm bg-red-200 text-red-800"
+            style="font-size: 8px"
+          >
+            Please enter a password to proceed
+          </p>
+        </div>
+        <div class="flex justify-center mt-4">
+          <button
+            [disabled]="loginForm.invalid"
+            [ngClass]="
+              loginForm.invalid ? 'cursor-not-allowed' : 'cursor-pointer'
+            "
+            id="login_btn"
+            (click)="login(loginForm.value)"
+            class="px-6 py-3"
+          >
+            Submit
+          </button>
+        </div>
+        <p class="text-center forgot_password">
+          Forget password!! Please contact the
+          <span class="text-violet-500">Super Admin</span>
+        </p>
+      </form>
+    </div>
+  </section>
+</ng-container>

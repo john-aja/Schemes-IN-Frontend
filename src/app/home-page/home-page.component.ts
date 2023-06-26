@@ -21,7 +21,10 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
     this.messageForm = new FormGroup({
       name: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.required),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+      ]),
       description: new FormControl('', Validators.required),
     });
   }

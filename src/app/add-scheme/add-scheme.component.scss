@@ -31,6 +31,38 @@ button:hover {
   transform: translateY(-1px);
 }
 
+.login_section p {
+  font-size: 14px;
+  margin-left: 6px;
+}
+
+.login_section input {
+  text-align: left !important;
+  box-shadow: 6px 6px 12px #c5c5c5, -3px -3px 10px #ffffff;
+}
+
+.login_section input::placeholder {
+  padding-left: 0.5rem !important;
+}
+
+#login_btn {
+  box-shadow: none;
+  background-color: #7c61e4;
+  color: rgb(224, 224, 224);
+  border-radius: 50px;
+  padding: 0.5rem 2rem;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  font-weight: 400;
+}
+#login_btn:hover {
+  background-color: #977efc;
+}
+
+.forgot_password {
+  font-size: 8px;
+}
+
 label {
   position: absolute;
   left: 0;
@@ -195,5 +227,34 @@ select {
   20% {
     transform: scaleY(1);
     -webkit-transform: scaleY(1);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .login_section p,
+  #login_btn {
+    font-size: 14px;
+  }
+  .forgot_password {
+    font-size: 10px !important;
+    margin-top: -2.5rem;
+  }
+
+  .login_section input::placeholder {
+    font-size: 10px;
+  }
+  .login_section form {
+    width: 90%;
+    height: 50%;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 1.3rem;
+  }
+
+  .login_section input {
+    height: 42px;
+  }
+  .error_text {
+    bottom: -2.7rem;
   }
 }
