@@ -1,29 +1,68 @@
-# InSchemes
+# Schemes
 
-A collection of schemes where user can navigate and check details of various schemes implemented and sponsored by Tamilnadu Government.
+This web application, developed using Angular and styled with TailwindCSS, provides a comprehensive collection of schemes implemented and sponsored by the Government of Tamil Nadu. Users can easily navigate through the schemes and access detailed information about each one.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.3.
+To open the website in a browser, please click on the following link : https://schemesin.netlify.app/
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Scheme Listing:** Browse a wide range of government schemes conveniently categorized for easy access.
 
-## Code scaffolding
+- **Detailed Information:** Click on any scheme to view its detailed description, eligibility criteria, benefits, and application procedures.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Technologies Used
 
-## Build
+- **Frontend:** Angular
+- **Styling:** TailwindCSS
+- **Backend:** [Mention your backend technologies here, e.g., Node.js, Express]
+- **API:** Your backend connects to the API to retrieve scheme details.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## How to Use
 
-## Running unit tests
+1. **Browse Schemes:** Start by exploring the list of schemes available on the homepage. You can click on a scheme to see more details.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+2. **Scheme Details:** Click on a scheme to view its complete details, including eligibility criteria, benefits, and application instructions.
 
-## Running end-to-end tests
+## Contribution
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Contributions are welcome! If you have information about new schemes or updates to existing ones, please feel free to contribute by following these steps:
 
-## Further help
+1. Fork this repository.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+2. Add or update scheme details in the appropriate format within the data files.
+
+3. Create a pull request with your changes.
+
+## Reporting Issues
+
+If you encounter any issues while using the application or have suggestions for improvements, please open an issue on this repository. Your feedback is valuable in making this catalog more useful.
+
+## Deployment
+
+To deploy this application, follow these steps:
+
+1. Clone this repository to your local machine.
+
+2. Install the necessary dependencies using `npm install`.
+
+3. Configure the backend API endpoints in the application.
+
+4. Build the Angular application using `ng build`.
+
+5. Deploy the built files to your preferred hosting platform.
+
+## License
+
+This project is licensed under the [Your License Name] License - see the [LICENSE](LICENSE) file for details.
+
+Thank you for visiting the Schemes Catalog!
+
+## Contact
+
+For any inquiries or support regarding the Library Management Web Application, please contact:
+
+**_John_**
+
+Email: ***janakiram.0695@gmail.com***
+
+Feel free to reach out with any questions, feedback, or suggestions. Your input is highly appreciated!
