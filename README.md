@@ -1,5 +1,7 @@
 # Schemes
 
+![LIBRARY](https://github.com/john-aja/Schemes-IN-Frontend/assets/95049418/702f0599-8b88-405d-b95c-db4afcd32392)
+
 This web application, developed using Angular and styled with TailwindCSS, provides a comprehensive collection of schemes implemented and sponsored by the Government of Tamil Nadu. Users can easily navigate through the schemes and access detailed information about each one.
 
 To open the website in a browser, please click on the following link : https://schemesin.netlify.app/
