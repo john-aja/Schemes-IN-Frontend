@@ -9,7 +9,7 @@
 .home_header {
   // font-family: "Nova Flat", sans-serif;
   line-height: 1.3;
-  animation: headerAnim 3s forwards 0.3s;
+  animation: headerAnim 1s forwards 0.3s;
   opacity: 0;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
@@ -48,7 +48,7 @@
 
 .home_img {
   position: relative;
-  animation: homeImg 3s forwards 0.3s;
+  animation: homeImg 1s forwards 0.3s;
   opacity: 0;
   top: 0;
 }
@@ -72,7 +72,7 @@
   );
   z-index: 0;
   border-radius: 272px 272px 269px 269px;
-  animation: homeImgBg 3s forwards 0.3s;
+  animation: homeImgBg 1s forwards 0.3s;
   opacity: 1;
 }
 
@@ -105,7 +105,7 @@
 }
 
 .info-container {
-  animation: infoAnim 3s forwards 0.3s;
+  animation: infoAnim 1s forwards 0.3s;
   opacity: 0;
 }
 
@@ -124,7 +124,7 @@
   -webkit-background-clip: text !important;
   background-clip: text !important;
   // -webkit-text-fill-color: transparent !important;
-  animation: stateGovt 20s infinite alternate !important;
+  animation: stateGovt 2s infinite alternate !important;
   transition: 3s ease;
 }
 

@@ -15,12 +15,12 @@ import { DbService } from '../db/db.service';
   styleUrls: ['./add-scheme.component.scss'],
 })
 export class AddSchemeComponent implements OnInit {
-  isLoggedIn = false;
+  isLoggedIn = true;
   successState: boolean = false;
   loading: boolean = false;
   successMessage!: string;
-  loginEmail: string = 'johnaj@*******.com';
-  loginPassword: string = '*******';
+  loginEmail: string = 'johnaj@schemesin.com';
+  loginPassword: string = 'abcd1234';
   loginForm!: FormGroup;
 
   @ViewChild('multipleField') multipleField: any;
